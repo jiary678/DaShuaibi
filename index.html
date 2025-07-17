@@ -26,7 +26,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: clamp(2rem, 5vw, 5rem);
+      font-size: clamp(1.8rem, 6vw, 5rem);
       font-weight: bold;
       z-index: 1;
       text-align: center;
@@ -82,7 +82,7 @@
       left: 50%;
       transform: translateX(-50%) scale(0);
       padding: 1em 2em;
-      font-size: 1.2rem;
+      font-size: 1rem;
       background: #00f0ff;
       color: #000;
       border: none;
@@ -109,10 +109,10 @@
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 30vw;
-      height: 30vw;
-      max-width: 300px;
-      max-height: 300px;
+      width: 25vw;
+      height: 25vw;
+      max-width: 280px;
+      max-height: 280px;
       transform: translate(-50%, -50%) scale(0);
       z-index: 3;
       border-radius: 2vw;
@@ -128,11 +128,11 @@
 
     #left-gif, #right-gif {
       position: fixed;
-      top: 50%;
+      top: 40%;
       width: 20vw;
-      height: 40vh;
-      max-width: 200px;
-      max-height: 300px;
+      height: 30vw;
+      max-width: 180px;
+      max-height: 240px;
       transform: translateY(-50%) scale(0);
       opacity: 0;
       z-index: 3;
@@ -141,16 +141,39 @@
     }
 
     #left-gif {
-      left: 4vw;
+      left: 2vw;
     }
 
     #right-gif {
-      right: 4vw;
+      right: 2vw;
     }
 
     #left-gif.show, #right-gif.show {
       opacity: 1;
       transform: translateY(-50%) scale(1);
+    }
+
+    /* 响应式适配手机屏幕 */
+    @media (max-width: 768px) {
+      #gif-img {
+        width: 35vw;
+        height: 35vw;
+      }
+
+      #left-gif, #right-gif {
+        width: 18vw;
+        height: 25vw;
+        top: 65%; /* 稍微错开中间 */
+      }
+
+      #text-container {
+        font-size: clamp(1.2rem, 5vw, 2rem);
+      }
+
+      #music-btn {
+        font-size: 0.9rem;
+        padding: 0.6em 1.2em;
+      }
     }
   </style>
 </head>
@@ -158,11 +181,9 @@
   <canvas id="canvas"></canvas>
   <div id="text-container"></div>
 
-  <!-- 中间和两侧 GIF -->
-  <img id="gif-img" src="dacall.gif" alt="动画" />
+  <img id="gif-img" src="dacall.gif" alt="中间动画" />
   <img id="left-gif" src="left.gif" alt="左动画" />
   <img id="right-gif" src="right.gif" alt="右动画" />
-
   <button id="music-btn">🎵 播放音乐</button>
   <audio id="bgm" src="套马杆.mp3"></audio>
 

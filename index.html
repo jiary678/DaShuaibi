@@ -26,7 +26,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 4rem;
+      font-size: clamp(2rem, 5vw, 5rem);
       font-weight: bold;
       z-index: 1;
       text-align: center;
@@ -76,18 +76,17 @@
       100% {opacity: 0; transform: scale(1) translate(-50%, -50%);}
     }
 
-    /* 播放按钮样式 */
     #music-btn {
       position: absolute;
-      bottom: 80px;
+      bottom: 8vh;
       left: 50%;
       transform: translateX(-50%) scale(0);
-      padding: 12px 24px;
+      padding: 1em 2em;
       font-size: 1.2rem;
       background: #00f0ff;
       color: #000;
       border: none;
-      border-radius: 50px;
+      border-radius: 2em;
       cursor: pointer;
       z-index: 2;
       opacity: 0;
@@ -106,17 +105,18 @@
       100% { transform: translateX(-50%) scale(1); }
     }
 
-    /* 中间 GIF 样式 */
     #gif-img {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 250px;
-      height: 250px;
+      width: 30vw;
+      height: 30vw;
+      max-width: 300px;
+      max-height: 300px;
       transform: translate(-50%, -50%) scale(0);
       z-index: 3;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0,255,255,0.6);
+      border-radius: 2vw;
+      box-shadow: 0 0 3vw rgba(0,255,255,0.6);
       transition: transform 0.5s ease, opacity 0.5s ease;
       opacity: 0;
     }
@@ -126,25 +126,26 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
-    /* 左右两侧 GIF 样式 */
     #left-gif, #right-gif {
       position: fixed;
       top: 50%;
-      width: 250px;
-      height: 600px;
+      width: 20vw;
+      height: 40vh;
+      max-width: 200px;
+      max-height: 300px;
       transform: translateY(-50%) scale(0);
       opacity: 0;
       z-index: 3;
-      border-radius: 20px;
+      border-radius: 2vw;
       transition: all 0.5s ease;
     }
 
     #left-gif {
-      left: 40px;
+      left: 4vw;
     }
 
     #right-gif {
-      right: 40px;
+      right: 4vw;
     }
 
     #left-gif.show, #right-gif.show {
@@ -162,14 +163,10 @@
   <img id="left-gif" src="left.gif" alt="左动画" />
   <img id="right-gif" src="right.gif" alt="右动画" />
 
-  <!-- 播放按钮 -->
   <button id="music-btn">🎵 播放音乐</button>
-
-  <!-- 音乐 -->
   <audio id="bgm" src="套马杆.mp3"></audio>
 
   <script>
-    // 粒子背景
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     let particles = [];
@@ -208,7 +205,6 @@
     }
     drawParticles();
 
-    // 动态文字内容
     const texts = [
       { text: "大帅比😎赵金晶", anim: "zoomIn" },
       { text: "你怎么不理我啊，心情💕💕不好么", anim: "slideIn" },
@@ -240,7 +236,7 @@
       if (index < texts.length) {
         setTimeout(showNext, 3500);
       } else {
-        setTimeout(showFinalUI, 2000); // 展示 GIF 与音乐按钮
+        setTimeout(showFinalUI, 2000);
       }
     }
 
@@ -253,7 +249,6 @@
       document.getElementById("right-gif").classList.add("show");
     }
 
-    // 音乐播放按钮逻辑
     const btn = document.getElementById("music-btn");
     const bgm = document.getElementById("bgm");
     btn.addEventListener("click", () => {
